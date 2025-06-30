@@ -28,6 +28,17 @@ jobs:
       - name: Clone external repo
         run: git clone https://github.com/CMCS-Norway/fortigate_exporter.git
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: fortigate_exporter/go.mod
+          cache-dependency-path: fortigate_exporter/go.sum
+
+      - name: Build fortigate_exporter binary
+        run: |
+          cd fortigate_exporter
+          make build
+
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:
