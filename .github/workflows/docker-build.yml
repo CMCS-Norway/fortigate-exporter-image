@@ -38,6 +38,9 @@ jobs:
         run: |
           cd fortigate_exporter
           make build
+          # Copy the built binary to the expected location for Dockerfile
+          mkdir -p ../.build/linux-amd64/
+          cp fortigate_exporter ../.build/linux-amd64/
 
       - name: Log in to Container Registry
         uses: docker/login-action@v3
